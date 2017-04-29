@@ -74,8 +74,8 @@ func main(){
 
   //range文の使い方
   // s := []int{2, 3, 8}
-  // for i, v := range s {
-  //     fmt.Println(i, v)
+  // for idx, v := range s {
+  //     fmt.Println(idx, v)
   // }
   // for _, v := range s {
   //     fmt.Println(v)
@@ -95,14 +95,6 @@ func main(){
   // fmt.Println(u)
   u.hit()
   u.show()
-
-  //インタフェースの使い方
-  greeters := []greeter{japanese{}, american{}}
-  for _, greeter := range greeters {
-      greeter.greet()
-  }
-
-
 }
 //構造体の作り方
 type user struct {
@@ -113,23 +105,7 @@ type user struct {
 func (u user) show() {
     fmt.Printf("name:%s, score:%d\n", u.name, u.score)
 }
-
 //メソッド（参照渡し）の使い方
 func (u *user) hit() {
     u.score++
-}
-
-//インタフェースの使い方
-type greeter interface {
-    greet()
-}
-
-type japanese struct {}
-type american struct {}
-
-func (j japanese) greet() {
-    fmt.Println("Konnnichiwa!")
-}
-func (a american) greet() {
-    fmt.Println("Hello!")
 }
