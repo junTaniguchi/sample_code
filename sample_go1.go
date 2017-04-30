@@ -3,6 +3,8 @@ package main
 import "fmt"
 
 func main(){
+  /////////////////////////////////////////////////////
+
   //スライスの使い方
   s := []int{}
   // append
@@ -14,6 +16,8 @@ func main(){
   fmt.Println(t)
   fmt.Println(n)
 
+  /////////////////////////////////////////////////////
+
   //map(連想配列)の使い方
   m := map[string]int{"taguchi":100, "fkoji":200}
   fmt.Println(m)
@@ -24,6 +28,8 @@ func main(){
   fmt.Println(v)
   fmt.Println(ok)
 
+  /////////////////////////////////////////////////////
+
   //if文の使い方
   if score := 43; score > 80{
     fmt.Printf("excellent score :%d\n", score)
@@ -32,6 +38,8 @@ func main(){
   }else {
     fmt.Printf("so so score :%d\n", score)
   }
+
+  /////////////////////////////////////////////////////
 
   //case文の使い方
   // signal := "blue"
@@ -53,6 +61,8 @@ func main(){
       fmt.Println("so so ...")
   }
 
+  /////////////////////////////////////////////////////
+
   //for文の使い方
   // for i := 0; i < 10; i++ {
   //     // if i == 3 { break }
@@ -72,6 +82,8 @@ func main(){
       if i == 3 { break }
   }
 
+  /////////////////////////////////////////////////////
+
   //range文の使い方
   // s := []int{2, 3, 8}
   // for idx, v := range s {
@@ -85,6 +97,8 @@ func main(){
       fmt.Println(k, v)
   }
 
+  /////////////////////////////////////////////////////
+
   //構造体の使い方
   // u := new(user)
   // // (*u).name = "taguchi"
@@ -96,6 +110,9 @@ func main(){
   u.hit()
   u.show()
 }
+
+/////////////////////////////////////////////////////
+
 //構造体の作り方
 type user struct {
     name string
@@ -109,3 +126,5 @@ func (u user) show() {
 func (u *user) hit() {
     u.score++
 }
+
+/////////////////////////////////////////////////////

@@ -1,6 +1,9 @@
 public class MyApp {
 
   public static void main(String[] args) {
+
+    /////////////////////////////////////////////////////
+
     // if文
     int score = 95;
     // if (score > 80) {
@@ -12,6 +15,8 @@ public class MyApp {
     // }
     String msg = score > 80 ? "Great!" : "so so ... !";
     System.out.println(msg);
+
+    /////////////////////////////////////////////////////
 
     // switch文
     String signal = "green";
@@ -31,6 +36,8 @@ public class MyApp {
         break;
     }
 
+    /////////////////////////////////////////////////////
+    
     // for文
     for (int i = 0; i < 10; i++) {
       if (i == 5) {
@@ -39,6 +46,8 @@ public class MyApp {
       }
       System.out.println(i);
     }
+
+    /////////////////////////////////////////////////////
 
     // 配列
     // int[] sales;
@@ -52,6 +61,8 @@ public class MyApp {
     System.out.println(sales[1]); // 400
     sales[1] = 500;
     System.out.println(sales[1]); // 500
+
+    /////////////////////////////////////////////////////
 
     // 配列
     int[] sales = {700, 400, 500};
