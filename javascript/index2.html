@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Package Report Search</title>
+    <script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+    <script type="text/javascript">
+      var mainCtrl = function($scope, $http) {
+        $scope.tasks = [
+          {"body":"do this 1", "done":false},
+          {"body":"do this 2", "done":false},
+          {"body":"do this 3", "done":true},
+          {"body":"do this 4", "done":false}
+        ];
+        $scope.addNew = function() {
+            $scope.tasks.push({"body":$scope.newTaskBody,"done":false});
+            $scope.newTaskBody = '';
+        }
+        $scope.getDoneCount = function() {
+            var count = 0;
+
+            return count;
+        }
+    }
+    </script>
+  </head>
+  <body>
+    <h1>Edit Package Report Search</h1>
+    下記の条件を設定し、「実行」ボタンを押下してください。
+    <div ng-controller="mainCtrl">
+      <section>
+        <label for="report">閲覧するレポートを選択してください：</label>
+        <select id="report" name="report">
+          <option value="EP-100">EP-100</option>
+          <option value="EP-101">EP-101</option>
+          <option value="EP-102">EP-102</option>
+          <option value="EP-103">EP-103</option>
+        </select>
+        <label for="date">日付を選択してください：</label>
+        <input type="date" id="date">
+      </section>
+    </div>
+  </body>
+</html>

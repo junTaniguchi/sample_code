@@ -1,8 +1,9 @@
 package main
 
 import(
-  "html/templete"
+  "html/template"
   "net/http"
+  "strconv"
 )
 //盤面などで使用する文字列
 const maru, batsu = "○", "×"
@@ -15,7 +16,7 @@ type ViewData struct{
 }
 
 //テンプレートの設定
-var tmpl *templete.Templete = templete.Must(templete.ParseFiles("game.tmpl"))
+var tmpl *template.Template = template.Must(template.ParseFiles("game.tmpl"))
 
 //Executeメソッドの宣言
 func (v *ViewData) Execute(w http.ResponseWriter)  {
@@ -28,13 +29,42 @@ func (v *ViewData) Execute(w http.ResponseWriter)  {
 
 //gameHandle関数の宣言
 func gameHandle(w http.ResponseWriter, r *http.Request){
-  turn := maru //手番
-  board := &Board{} //盤面
+  _, nextTurn := turnFormValue(r) //手番の入力値を取得する
+  board := boardFormValue(r)      //盤面の入力値を取得する
+  //値を設定してHTMLを送信する
   v := ViewData{
-    turn,
+    nextTurn,
     board,
   }
   v.Execute(w)
+}
+
+// boardFormValue関数を宣言（盤面の値を取得）
+func boardFormValue(r *http.Response){
+  var board Board
+  for row, rows := range board{
+    for col, _ := range rows{
+      // 盤面のname属性「c00」～「c22」を作成
+      name := "c" + strconv.Itoa(row) + strconv.Itoa(col)
+      // 盤面の各項目を取得
+      board[row][col] = r.FormValue(name)
+    }
+  }
+  return &board
+}
+
+//変数nextTurnMapに次の手番を取得するマップを設定
+var nextTurnMap = map[string]string{
+  maru:batsu,
+  batsu:maru,
+  "":maru, // 「""」の場合、ゲーム開始時として「"○"」を取得
+}
+
+//turnFormValue関数の宣言(手番の値を取得)
+func turnFormValue(r *http.Request)(string, string){
+  turn := r.FormValue("turn") //現在の手番を取得
+  nextTurn := nextTurnMap[turn] //マップを使用して次の手番を取得
+  return turn, nextTurn
 }
 
 func main(){
